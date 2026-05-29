@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://tbcewmvpb266"]
+
+[ext_resource type="Script" uid="uid://6puugmmhckkj" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://dlqhy5xiumdmg" path="res://slime.tscn" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://5glra5g63ydn" path="res://icon.svg" id="3_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bvp3"]
+size = Vector2(32, 32)
+
+[node name="Main" type="Node" unique_id=562058445]
+script = ExtResource("1_ig7tw")
+
+[node name="GameView" type="Node2D" parent="." unique_id=611101181]
+
+[node name="Left" type="Node2D" parent="GameView" unique_id=748084074]
+
+[node name="ColorRect" type="ColorRect" parent="GameView/Left" unique_id=636232698]
+offset_left = -256.0
+offset_bottom = 224.0
+color = Color(1, 0, 1, 1)
+
+[node name="Center" type="Node2D" parent="GameView" unique_id=1228091196]
+
+[node name="ColorRect" type="ColorRect" parent="GameView/Center" unique_id=393576890]
+offset_right = 256.0
+offset_bottom = 224.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+color = Color(0, 1, 1, 1)
+
+[node name="Slimes" type="Node2D" parent="GameView/Center" unique_id=1627683395]
+position = Vector2(0, 8)
+
+[node name="Red" parent="GameView/Center/Slimes" unique_id=446774224 instance=ExtResource("2_0xm2m")]
+position = Vector2(128, 40)
+color = "red"
+
+[node name="Blue" parent="GameView/Center/Slimes" unique_id=1728492903 instance=ExtResource("2_0xm2m")]
+position = Vector2(64, 88)
+color = "blue"
+
+[node name="Yellow" parent="GameView/Center/Slimes" unique_id=361922779 instance=ExtResource("2_0xm2m")]
+position = Vector2(168, 160)
+color = "yellow"
+
+[node name="Black" parent="GameView/Center/Slimes" unique_id=760770949 instance=ExtResource("2_0xm2m")]
+position = Vector2(96, 160)
+color = "black"
+
+[node name="White" parent="GameView/Center/Slimes" unique_id=2066460113 instance=ExtResource("2_0xm2m")]
+position = Vector2(192, 88)
+color = "white"
+
+[node name="Cauldron" type="Area2D" parent="GameView/Center" unique_id=1650038630]
+position = Vector2(176, 152)
+
+[node name="Sprite2D" type="Sprite2D" parent="GameView/Center/Cauldron" unique_id=757511164]
+position = Vector2(-48.000004, -48.000004)
+scale = Vector2(0.24999994, 0.24999994)
+texture = ExtResource("3_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameView/Center/Cauldron" unique_id=1852657004]
+position = Vector2(-48, -48)
+shape = SubResource("RectangleShape2D_1bvp3")
+
+[node name="Right" type="Node2D" parent="GameView" unique_id=1356067966]
+
+[node name="ColorRect" type="ColorRect" parent="GameView/Right" unique_id=763106760]
+offset_left = 256.0
+offset_right = 512.0
+offset_bottom = 224.0
+color = Color(1, 0, 0, 1)
+
+[node name="LeftSwitch" type="Control" parent="." unique_id=32155899]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 224.0
+
+[node name="RightSwitch" type="Control" parent="." unique_id=1557056285]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 240.0
+offset_right = 256.0
+offset_bottom = 216.0
+
+[connection signal="click_slime" from="GameView/Center/Slimes/Red" to="." method="_on_slime_click_slime"]
+[connection signal="click_slime" from="GameView/Center/Slimes/Blue" to="." method="_on_slime_click_slime"]
+[connection signal="click_slime" from="GameView/Center/Slimes/Yellow" to="." method="_on_slime_click_slime"]
+[connection signal="click_slime" from="GameView/Center/Slimes/Black" to="." method="_on_slime_click_slime"]
+[connection signal="click_slime" from="GameView/Center/Slimes/White" to="." method="_on_slime_click_slime"]
+[connection signal="mouse_entered" from="LeftSwitch" to="." method="_on_left_switch_mouse_entered"]
+[connection signal="mouse_exited" from="LeftSwitch" to="." method="_on_left_switch_mouse_exited"]
+[connection signal="mouse_entered" from="RightSwitch" to="." method="_on_right_switch_mouse_entered"]
+[connection signal="mouse_exited" from="RightSwitch" to="." method="_on_right_switch_mouse_exited"]
