@@ -1,7 +1,36 @@
 [gd_scene format=3 uid="uid://dlqhy5xiumdmg"]
 
-[ext_resource type="Texture2D" uid="uid://5glra5g63ydn" path="res://icon.svg" id="1_2d52u"]
 [ext_resource type="Script" uid="uid://1o61j8gol863" path="res://slime.gd" id="1_5jc4t"]
+[ext_resource type="Texture2D" uid="uid://d0qs53x3hdvkf" path="res://Sprites/black-slime.png" id="2_5jc4t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4l1t8"]
+atlas = ExtResource("2_5jc4t")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppcr1"]
+atlas = ExtResource("2_5jc4t")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jayke"]
+atlas = ExtResource("2_5jc4t")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2002g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4l1t8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppcr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jayke")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5jc4t"]
 size = Vector2(16, 16)
@@ -12,9 +41,12 @@ metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2009930445]
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=952652101]
-scale = Vector2(0.12499999, 0.12499999)
-texture = ExtResource("1_2d52u")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D" unique_id=2056254100]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_2002g")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.4876843
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=739826690]
 shape = SubResource("RectangleShape2D_5jc4t")
